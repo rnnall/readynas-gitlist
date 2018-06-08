@@ -1,6 +1,6 @@
 # gitlist ReadyNAS setup
 
-This is a an experiement with creating github repository on a NetGear ReadyNAS 104 system. Utlimate goal will be to sync with Google Drive, Dropbox, Box, OneDrive...
+This is a an experiement with creating github repository on a NetGear ReadyNAS 104 system. Utlimate goal will be to sync with **Google Drive** and considering: Dropbox, Box, OneDrive...
 
 ## System Information
 
@@ -21,6 +21,19 @@ TODO: Describe the installation process
 PHP: Install from RadyNAS addon apps form Devloper: Poussin
 
 ![php](images/2018/06/php.png)
+
+#### Errors
+
+**ERROR:** Please, edit the config file and provide your repositories directory
+
+**FIX:** Permisions on `/home/<username>`  `drwx------ 1 git   users` to `drwx------ 1 git   users` with <kbd>chmod 755 /home/git/</kbd>
+
+**ERROR:** When selecting repository http://192.168.80.128:7082/gitlist/
+> **Not Found**
+>
+> The requested URL /gitlist/ was not found on this server.
+
+**FIX:** use the `index.php` path http://192.168.80.128:7082/index.php
 
 ## Usage
 
