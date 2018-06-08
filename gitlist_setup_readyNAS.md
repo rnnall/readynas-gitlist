@@ -1,6 +1,6 @@
 # gitlist ReadyNAS setup
 
-This is a an experiement with creating github repository on a NetGear ReadyNAS 104 system. Utlimate goal will be to sync with Google Drive.
+This is a an experiement with creating github repository on a NetGear ReadyNAS 104 system. Utlimate goal will be to sync with Google Drive, Dropbox, Box, OneDrive...
 
 ## System Information
 
