@@ -20,7 +20,7 @@ TODO: Describe the installation process
 
 PHP: Install from RadyNAS addon apps form Devloper: Poussin
 
-![php](images/2018/06/php.png)
+![php](/images/2018/06/php.png)
 
 #### Errors
 
