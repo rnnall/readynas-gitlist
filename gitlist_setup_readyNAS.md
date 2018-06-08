@@ -61,3 +61,7 @@ TODO https://community.netgear.com/t5/Using-your-ReadyNAS/OS-6-1-4-apache2-mod-r
 ## License
 
 TODO: Write license
+
+# Relative links in markup files
+
+[A relative link](readyNAS_Dev.md)
