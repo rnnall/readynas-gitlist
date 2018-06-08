@@ -1,4 +1,6 @@
-# gitweb setup ABANDONED for gitlist
+#  ABANDONED
+
+# ~~gitweb setup for gitlist~~
 
 ## **Minor changes to ReadyNAS**
 
