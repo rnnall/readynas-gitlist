@@ -1,21 +1,16 @@
-
-# RESOURCES
-
-## Tutorials
-
 # readNAS Documentation
 
 This is to document the changes that will be made to the local ReadyNAS.
 
-  ## Installation
+## Installation
 
   TODO: Describe the installation process
 
-  ## Usage
+## Usage
 
   TODO: Write usage instructions
 
-  ## Contributing
+## Contributing
 
   1. Fork it!
   2. Create your feature branch: `git checkout -b my-new-feature`
@@ -23,11 +18,11 @@ This is to document the changes that will be made to the local ReadyNAS.
   4. Push to the branch: `git push origin my-new-feature`
   5. Submit a pull request :D
 
-  ## History
+## History
 
   TODO: Write history
 
-  ## Credits
+## Credits
 
 [git syncing][722d05eb]
 
@@ -38,6 +33,6 @@ This is to document the changes that will be made to the local ReadyNAS.
 
 [0d16c693]: https://www.atlassian.com/git/tutorials/setting-up-a-repository "Setting up a repository"
 
-  ## License
+## License
 
   TODO: Write license
