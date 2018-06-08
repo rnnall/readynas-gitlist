@@ -61,6 +61,3 @@ TODO https://community.netgear.com/t5/Using-your-ReadyNAS/OS-6-1-4-apache2-mod-r
 ## License
 
 TODO: Write license
-
-
-Got some strange errors with remote commit and atom open 
