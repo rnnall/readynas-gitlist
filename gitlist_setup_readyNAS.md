@@ -181,7 +181,7 @@ This is for documenting my steps as I have a very bad habit of doing things and 
 
 ## Contributing
 
-Open to any feedback on this setup as it can documenation needs some work with formating and steps. This is my frist use of markdown languge along with the learning curve of git. I am dusting off the old linux in the proces. Hopfully someone finds this usefull.
+Open to any feedback on this setup as the documenation needs work with formating and steps. This is my frist use of markdown languge along with the learning curve of git. I am dusting off very old linux skills. Hopfully someone finds this usefull.
 
 
 ## Credits
