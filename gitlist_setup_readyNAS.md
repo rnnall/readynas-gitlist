@@ -10,9 +10,135 @@ This is a an experiement with creating github repository on a NetGear ReadyNAS 1
 
 **Firmware Version:** 6.9.3
 
- **Memory:** 512
+**Apache2 Version:**
+
 
 ## Installation
+
+### Download and Preperation
+
+```sh
+root@NAS01:~# cd /apps/
+
+root@NAS01:~# wget https://github.com/klaussilveira/gitlist/releases/download/1.0.0/gitlist-1.0.0.tar.gz
+
+root@NAS01:~# tar xzvf gitlist-1.0.0.tar.gz
+
+root@NAS01:~# cp config.ini-example config.ini
+
+root@NAS01:~# apt-get install vim
+
+root@NAS01:~# vim config.ini
+
+```
+
+**Edit:** `config.ini` change `repositories[] = '/home/git/repos/'` optional include `baseurl = 'http://192.168.80.128:7082/'`
+
+### config.ini
+
+```sh
+client = '/usr/bin/git' ; Your git executable path
+default_branch = 'master' ; Default branch when HEAD is detached
+#repositories[] = '/home/git/repos/' ; Path to your repositories
+repositories[] = '/home/git/repos/' ; Path to your repositories
+                                           ; If you wish to add more repositories, just add a new line
+
+; WINDOWS USERS
+;client = '"C:\Program Files (x86)\Git\bin\git.exe"' ; Your git executable path
+;repositories[] = 'C:\Path\to\Repos\' ; Path to your repositories
+
+; You can hide repositories from GitList, just copy this for each repository you want to hide or add a regex (including delimiters), eg. hidden[] = '/(.+)\.git/'
+; hidden[] = '/home/git/repositories/BetaTest'
+
+[app]
+debug = false
+cache = true
+theme = "default"
+title = ""
+baseurl = 'http://192.168.80.128:7082/'
+
+```
+
+### Create User
+
+Create new user under `Accounts` and add to ssh acces.
+
+**New User**
+![new_user](images/2018/06/new-user.png)
+
+**Allow SSH**
+
+![user_ssh](images/2018/06/user-ssh.png)
+
+### http.conf
+
+Addtional informaiton can be found on how readyNAS uses `apache2` configuration files: [OS 6.1.4 apache2 mod_rewrite .htaccess problem](https://community.netgear.com/t5/Using-your-ReadyNAS/OS-6-1-4-apache2-mod-rewrite-htaccess-problem/td-p/896062)
+
+```sh
+root@NAS01:~#  cd /apps/gitlist
+
+root@NAS01:~# cp ../phpr6/http.conf .
+
+root@NAS01:~# vim http.conf
+
+```
+
+**Edit:** `http.conf` chage `Listen 7082` **&** `DocumentRoot /apps/gitlist` **&** `<Directory /apps/gitlist>` **&** `ScriptAlias /cgi-bin /apps/gitlist`  **&** `ErrorLog /apps/gitlist/error.log`
+
+```sh
+Listen 7082
+<VirtualHost *:7082>
+        ServerAdmin admin@localhost
+
+        DocumentRoot /apps/gitlist
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /apps/gitlist>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+        ScriptAlias /cgi-bin /apps/gitlist
+
+        ErrorLog /apps/gitlist/error.log
+        LogLevel warn
+</VirtualHost>
+```
+
+> **NOTE**
+> The `/etc/apache2/sites-enabled/` allow for virtualhost
+>
+
+```sh
+root@NAS01:~# ls -la /etc/apache2/sites-enabled/
+total 16
+drwxr-xr-x 1  115 guest 106 Jun  8 09:43 .
+drwxr-xr-x 1 root root  188 Jun  7 14:14 ..
+lrwxrwxrwx 1 root root   36 Jun  7 14:57 000-fv-http -> /etc/apache2/sites-available/fv-http
+lrwxrwxrwx 1 root root   27 Jun  7 14:14 000-fv-https -> ../sites-available/fv-https
+lrwxrwxrwx 1 root root   21 Jun  8 09:40 090-phpr6.conf -> /apps/phpr6/http.conf
+
+```
+**symlink**
+
+```sh
+root@NAS01:~# ln -s /apps/gitlist/http.conf /etc/apache2/sites-enabled/099-gitlsit.conf
+```
+
+```sh
+root@NAS01:~# ls -la  /etc/apache2/sites-enabled/099-gitlist.conf
+lrwxrwxrwx 1 root root 23 Jun  8 09:40 /etc/apache2/sites-enabled/099-gitlist.conf -> /apps/gitlist/http.conf
+```
+
+**Reload Apache configuration**
+
+```sh
+root@NAS01:~# /etc/init.d/apache2 reload
+
+```
 
 TODO: Describe the installation process
 
@@ -55,8 +181,6 @@ TODO: Write credits
 TODO https://gofedora.com/how-to-install-configure-gitweb/
 
 TODO https://gofedora.com/insanely-awesome-web-interface-git-repos/
-
-TODO https://community.netgear.com/t5/Using-your-ReadyNAS/OS-6-1-4-apache2-mod-rewrite-htaccess-problem/td-p/896062
 
 ## License
 
