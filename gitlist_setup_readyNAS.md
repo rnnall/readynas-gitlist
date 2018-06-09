@@ -1,21 +1,36 @@
 # gitlist ReadyNAS setup
 
-This is a an experiement with creating github repository on a NetGear ReadyNAS 104 system. Utlimate goal will be to sync with **Google Drive** and considering: Dropbox, Box, OneDrive...
+This is a an experiement with creating github repository with Web Interface for Git Repos on a NetGear ReadyNAS 104 system and [gitlist](https://github.com/klaussilveira/gitlist). Utlimate goal will be to sync with **Google Drive** and considering: Dropbox, Box, OneDrive...
 
-## System Information
+## System Information & Requirements
 
-**Model:** ReadyNAS 104
+### System Informaton:
 
-**Firmware Name:** ReadyNASOS
+* **Model:** ReadyNAS 104
 
-**Firmware Version:** 6.9.3
+* **Firmware Name:** ReadyNASOS
 
-**Apache2 Version:**
+* **Firmware Version:** 6.9.3
 
+### Requirements:
+
+* Apache2
+* git
+* PHP 5.3+  (Easy install from RadyNAS addon apps form Devloper: Poussin)
+
+![php](images/2018/06/php.png)
 
 ## Installation
 
-### Download and Preperation
+### Install git
+
+```sh
+
+root@NAS01:~# apt-git install git git-core
+
+```
+
+### Installing and Configuring GitList
 
 ```sh
 root@NAS01:~# cd /apps/
@@ -24,6 +39,12 @@ root@NAS01:~# wget https://github.com/klaussilveira/gitlist/releases/download/1.
 
 root@NAS01:~# tar xzvf gitlist-1.0.0.tar.gz
 
+root@NAS01:~# cd gitlist
+
+root@NAS01:~# mkdir cache
+
+root@NAS01:~# chmod 777 cache
+
 root@NAS01:~# cp config.ini-example config.ini
 
 root@NAS01:~# apt-get install vim
@@ -31,6 +52,7 @@ root@NAS01:~# apt-get install vim
 root@NAS01:~# vim config.ini
 
 ```
+
 
 **Edit:** `config.ini` change `repositories[] = '/home/git/repos/'` optional include `baseurl = 'http://192.168.80.128:7082/'`
 
@@ -140,14 +162,6 @@ root@NAS01:~# /etc/init.d/apache2 reload
 
 ```
 
-TODO: Describe the installation process
-
-### Dependancy
-
-PHP: Install from RadyNAS addon apps form Devloper: Poussin
-
-![php](images/2018/06/php.png)
-
 #### Errors
 
 _ERROR:_ Please, edit the config file and provide your repositories directory
@@ -163,25 +177,15 @@ _FIX:_ use the `index.php` path http://192.168.80.128:7082/index.php
 
 ## Usage
 
-TODO: Write usage instructions
+This is for documenting my steps as I have a very bad habit of doing things and forgetting what I did down the road. Hopeing someone can find some use for this.
 
 ## Contributing
 
-1. Fork it!
-2. ...
+Open to any feedback on this setup as it can documenation needs some work with formating and steps. This is my frist use of markdown languge along with the learning curve of git. I am dusting off the old linux in the proces. Hopfully someone finds this usefull.
 
-## History
-
-TODO: Write history
 
 ## Credits
 
-TODO: Write credits
+[How To: Install and Configure GitWeb](https://gofedora.com/how-to-install-configure-gitweb/) (Considered this, but was challnaged and could not get it running)
 
-TODO https://gofedora.com/how-to-install-configure-gitweb/
-
-TODO https://gofedora.com/insanely-awesome-web-interface-git-repos/
-
-## License
-
-TODO: Write license
+[Insanely Awesome Web Interface for Your Git Repos](https://gofedora.com/insanely-awesome-web-interface-git-repos/)
